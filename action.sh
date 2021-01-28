@@ -31,15 +31,12 @@ else
     export CONFIG_FILE="${GITHUB_WORKSPACE}/mkdocs.yml"
 fi
 
-if [ -n "${GITHUB_TOKEN}" ]; then
-    print_info "setup with GITHUB_TOKEN"
+if [ -n "${INPUT_AUTH_TOKEN}" ]; then
+    print_info "setup with INPUT_AUTH_TOKEN"
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 elif [ -n "${PERSONAL_TOKEN}" ]; then
     print_info "setup with PERSONAL_TOKEN"
     remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-elif [ -n "${INPUT_AUTH_TOKEN}" ]; then
-    print_info "setup with INPUT_AUTH_TOKEN"
-    remote_repo="https://x-access-token:${INPUT_AUTH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 fi
 
 if ! git config --get user.name; then
